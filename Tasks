@@ -221,4 +221,40 @@
 # p a.select.with_index{ |x, y| a.min == x && a[y+1] == x || a.min == x && a[y-1] == x && y > 0 }.length
 #
 # Дан целочисленный массив. Вывести вначале все его четные элементы, а затем - нечетные.
-# a = [8, 1, 1, 1, 1, 4, 5, 2, 2,  1, 7, 6, 4, 8]
+# a = [8, 1, 1, 1, 1, 4, 5, 2, 2, 1, 7, 6, 4, 8]
+# p a.sort_by{|x| [x % 2 , x]}
+# or
+# p a.partition{|x| x.even? }.reduce{|x, y| x.concat(y)}
+#
+# Дан целочисленный массив. Проверить, чередуются ли в нем четные и нечетные числа.
+# a = [8, 1, 2, 3, 5]
+# p a.each_cons(2).all?{|x, y| x.even? && y.odd? || x.odd? && y.even? }
+#
+# Дано вещественное число R и массив вещественных чисел.
+# Найти два элемента массива, сумма которых наиболее близка к данному числу.
+# a = [2, 1.5, 1.8, 13.4, 6.2, 4, 8]
+# r = 8.4
+# #
+# def closer_numbers(massive, number)
+#   array_of_arrays = []# здесь будут храниться элементы и их индексы в виде массивов в массиве
+#
+#   my_array = []# здесь храняться суммы чисел, их индекс в этом массиве равен индексу в элементов в массиве array_of_arrays
+#
+#   msn = massive.dup# запасной массив
+#
+#   massive.each.with_index do |x, index|
+#     msn.each.with_index do |y, second_index|
+#       if index != second_index
+#         my_array.push(x+y) # добавляем результат суммы всех двух чисел
+#         array_of_arrays.push([x, index, y, second_index]) # добавляем их данные ( элементы и индексы)
+#       end
+#     end
+#   end
+#   my_var = my_array.min_by{|x| (number-x).abs} # находим ближайшую сумму к исходному числу
+#   index_of_elements = my_array.index(my_var) # = смотрим на индекс этой суммы
+#   p array_of_arrays[index_of_elements] # - индексы равны в обоих массивов теперь можно вывести и сами числа с их индексами
+#
+# end
+#
+# closer_numbers(a, r)
+
